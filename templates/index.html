@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Causas y Recomendaciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        form {
+            width: 100%;
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .content {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 40px;
+        }
+        .content h2 {
+            color: #34495e;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .category {
+            margin-top: 20px;
+        }
+        .category h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #16a085;
+        }
+        .causa, .recomendacion {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Análisis de Causas y Recomendaciones</h1>
+    <form method="POST">
+        <label for="problema">Ingresa el problema de ciberseguridad:</label>
+        <textarea id="problema" name="problema" rows="4" cols="50" required></textarea>
+        <input type="submit" value="Analizar">
+    </form>
+
+    <div class="content">
+        {% if problema %}
+        <h2>Problema Analizado:</h2>
+        <p>{{ problema }}</p>
+        {% endif %}
+
+        {% if causas %}
+        <h2>Causas Identificadas</h2>
+        {% for categoria, causa in causas.items() %}
+        <div class="category">
+            <h3>{{ categoria }}</h3>
+            <div class="causa">{{ causa }}</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if recomendaciones %}
+        <h2>Recomendaciones</h2>
+        {% for categoria, recomendacion in recomendaciones.items() %}
+        <div class="category">
+            <h3>{{ categoria }}</h3>
+            <div class="recomendacion">{{ recomendacion }}</div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
