@@ -3,7 +3,9 @@ import openai
 import os
 from dotenv import load_dotenv
 #cambio
+
 def crear_app():
+    
     load_dotenv()
 
     app = Flask(__name__)
@@ -54,15 +56,16 @@ def crear_app():
         return recomendaciones
 
     @app.route('/', methods=['GET', 'POST'])
+
     def index():
         if request.method == 'POST':
-            problema = request.form['problema']
-            causas = generar_causas(problema)
-            recomendaciones = generar_recomendaciones(causas)
-            return render_template('index.html', causas=causas, recomendaciones=recomendaciones, problema=problema)
+         problema = request.form['problema']
+         causas = generar_causas(problema)
+         recomendaciones = generar_recomendaciones(causas)
+         return render_template('index.html', causas=causas, recomendaciones=recomendaciones, problema=problema)
         return render_template('index.html')
     return app
 
 if __name__ == '__main__':
     app= crear_app()
-    app.run()
+    app.run(debug=True)
